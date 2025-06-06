@@ -30,30 +30,21 @@
       padding: 20px 100px;
       background: transparent;
       z-index: 1000;
-      flex-wrap: wrap;
     }
 
     header h1 {
       color: #bb86fc;
       font-size: 28px;
-      flex-shrink: 0;
-    }
-
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 5px;
     }
 
     nav a {
       color: white;
+      margin-left: 25px;
       text-decoration: none;
       font-weight: 500;
       padding: 8px 15px;
       border-radius: 8px;
       transition: background 0.3s ease, color 0.3s ease;
-      white-space: nowrap;
     }
 
     nav a:hover {
@@ -68,20 +59,21 @@
       text-align: left;
       padding: 0 40px;
       background: linear-gradient(to bottom right, #141426, #0f0f1a);
-      padding-top: 100px; /* Header sabit olduğu için üst boşluk */
-      box-sizing: border-box;
     }
 
     .hero-content {
       max-width: 600px;
       animation: fadeInUp 1s ease-out;
+
+      max-width: 100%;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
 
     .hero h2 {
       font-size: 48px;
       color: #bb86fc;
       margin-bottom: 20px;
-      word-break: break-word;
     }
 
     .hero p {
@@ -116,6 +108,60 @@
       }
     }
 
+    /* --- Sunucu IP Bölümü --- */
+    .server-ip-section {
+      padding: 140px 0 80px 0;
+      background: #141426;
+      display: flex;
+      justify-content: center;
+    }
+
+    .server-ip-container {
+      position: relative;
+      background: #1a1a2e;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 35px rgba(187, 134, 252, 0.4);
+      width: 320px;
+      max-width: 100%;
+      text-align: center;
+      overflow: visible;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .server-ip-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(187, 134, 252, 0.7);
+    }
+
+    #copy-ip-btn {
+      background: #bb86fc;
+      color: #0f0f1a;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 25px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 16px;
+      transition: background 0.3s ease;
+      margin-bottom: 15px;
+    }
+
+    #copy-ip-btn:hover {
+      background: #9b6dfc;
+    }
+
+    .ip-info {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    /* --- Alt bölüm: İletişim ve SSS --- */
+
     .bottom-section {
       display: flex;
       justify-content: space-between;
@@ -124,16 +170,23 @@
       color: white;
       flex-wrap: wrap;
       gap: 40px;
+      position: relative;
     }
 
     .contact-box, .faq-box {
+      position: relative;
       background: #1a1a2e;
-      padding: 30px;
+      padding: 40px 30px 30px 30px;
       border-radius: 15px;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
       flex: 1;
       min-width: 300px;
+      max-width: 100%;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
 
     .contact-box:hover, .faq-box:hover {
@@ -144,17 +197,6 @@
     .contact-box h2, .faq-box h2 {
       color: #bb86fc;
       margin-bottom: 20px;
-    }
-
-    .contact-box ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .contact-box ul li {
-      margin-bottom: 10px;
-      font-size: 16px;
-      word-break: break-word;
     }
 
     .faq-item {
@@ -172,7 +214,6 @@
       cursor: pointer;
       font-weight: bold;
       transition: background 0.3s ease;
-      user-select: none;
     }
 
     .faq-question:hover {
@@ -180,20 +221,10 @@
     }
 
     .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      margin-top: 0;
+      display: none;
+      margin-top: 10px;
       padding-left: 15px;
       color: #cccccc;
-      transition: max-height 0.3s ease, margin-top 0.3s ease;
-      font-size: 15px;
-      line-height: 1.4;
-    }
-
-    .faq-answer.open {
-      display: block;
-      max-height: 300px; /* yeterince yüksek */
-      margin-top: 10px;
     }
 
     footer {
@@ -224,37 +255,9 @@
         flex-direction: column;
         padding: 40px;
       }
-    }
 
-    @media screen and (max-width: 600px) {
-      .hero-content {
-        max-width: 100%;
-        padding: 0 20px;
-      }
-
-      .hero h2 {
-        font-size: 32px;
-        line-height: 1.3;
-      }
-
-      .hero p {
-        font-size: 16px;
-      }
-
-      .bottom-section {
-        flex-direction: column;
-        padding: 20px;
-      }
-
-      .contact-box, .faq-box {
-        min-width: auto;
-        width: 100%;
-      }
-
-      nav a {
-        margin-left: 10px;
-        margin-bottom: 10px;
-        padding: 8px 12px;
+      .server-ip-container {
+        width: 90%;
       }
     }
   </style>
@@ -278,29 +281,41 @@
     </div>
   </section>
 
-  <section class="bottom-section" id="faq">
+  <!-- Sunucu IP Bölümü -->
+  <section class="server-ip-section" id="server-ip-section">
+    <div class="server-ip-container">
+      <h3 style="color:#bb86fc; font-weight:700; font-size: 20px;">Sunucu IP</h3>
+      <button id="copy-ip-btn">Kopyala</button>
+      <div class="ip-info">Sunucumuza hemen bağlanmak için IP adresini kopyalayın!</div>
+    </div>
+  </section>
+
+  <!-- Alt Bölüm: İletişim ve SSS -->
+  <section class="bottom-section">
+
     <div class="contact-box" id="iletisim">
-      <h2>İletişime Geç</h2>
-      <p>Bizimle iletişime geçmek için:</p>
-      <ul>
-        <li><strong>Email:</strong> iletisim@santananetwork.com</li>
-        <li><strong>Discord:</strong> <a href="https://discord.gg/santana" style="color: #bb86fc;">discord.gg/santana</a></li>
-      </ul>
+      <h2>İletişim</h2>
+      <p><strong>Email:</strong> iletisim@santananetwork.com</p>
+      <p><strong>Telefon:</strong> +90 123 456 7890</p>
+      <p><strong>Adres:</strong> Türkiye, İstanbul</p>
     </div>
 
-    <div class="faq-box">
+    <div class="faq-box" id="faq">
       <h2>Sıkça Sorulan Sorular</h2>
+
       <div class="faq-item">
-        <button class="faq-question">Lisans sistemi nasıl oluyor?</button>
-        <div class="faq-answer">IP adresinizi profilinize ekleyerek sistemi aktive edebilirsiniz.</div>
+        <button class="faq-question">Sunucu ne zaman açılıyor?</button>
+        <div class="faq-answer">Sunucumuz 2025 yaz sezonunda açılacaktır.</div>
       </div>
+
       <div class="faq-item">
-        <button class="faq-question">Nasıl destek alabilirim?</button>
-        <div class="faq-answer">Discord sunucumuzdan veya iletişim formumuzdan bize ulaşabilirsiniz.</div>
+        <button class="faq-question">Nasıl kayıt olabilirim?</button>
+        <div class="faq-answer">Sunucuya bağlandığınızda otomatik kayıt olursunuz.</div>
       </div>
+
       <div class="faq-item">
-        <button class="faq-question">Ürün iadesi yapıyor muyuz?</button>
-        <div class="faq-answer">Yalnızca sistem çalışmazsa dijital iade mümkündür.</div>
+        <button class="faq-question">Özel etkinlikler düzenleniyor mu?</button>
+        <div class="faq-answer">Evet, düzenli olarak özel etkinliklerimiz oluyor.</div>
       </div>
     </div>
   </section>
@@ -310,22 +325,29 @@
   </footer>
 
   <script>
+    // SSS açılır cevaplar
     const questions = document.querySelectorAll('.faq-question');
     questions.forEach(btn => {
       btn.addEventListener('click', () => {
         const answer = btn.nextElementSibling;
-        const isOpen = answer.classList.contains('open');
-        // Diğer açık cevapları kapat (tek seferde bir açılır)
-        document.querySelectorAll('.faq-answer.open').forEach(openAnswer => {
-          if(openAnswer !== answer) {
-            openAnswer.classList.remove('open');
-          }
-        });
-        if(isOpen) {
-          answer.classList.remove('open');
+        if(answer.style.display === 'block'){
+          answer.style.display = 'none';
         } else {
-          answer.classList.add('open');
+          // Önce tüm cevapları kapat
+          document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+          // Sonra tıklanan aç
+          answer.style.display = 'block';
         }
+      });
+    });
+
+    // IP kopyalama butonu
+    const copyBtn = document.getElementById('copy-ip-btn');
+    copyBtn.addEventListener('click', () => {
+      const ipText = "play.santananetwork.com";  // Kopyalanacak IP metni burada gizli tutulur
+      navigator.clipboard.writeText(ipText).then(() => {
+        copyBtn.textContent = 'Kopyalandı!';
+        setTimeout(() => copyBtn.textContent = 'Kopyala', 2000);
       });
     });
   </script>
