@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SantanaNetwork</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f0f1a, #1a1a2e);
+      color: white;
+      line-height: 1.6;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 100px;
+      background: transparent;
+      z-index: 1000;
+    }
+
+    header h1 {
+      color: #bb86fc;
+      font-size: 28px;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 25px;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 15px;
+      border-radius: 8px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: left;
+      padding: 0 40px;
+      background: linear-gradient(to bottom right, #141426, #0f0f1a);
+    }
+
+    .hero-content {
+      max-width: 600px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero h2 {
+      font-size: 48px;
+      color: #bb86fc;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #dddddd;
+      margin-bottom: 30px;
+    }
+
+    .hero a {
+      display: inline-block;
+      padding: 12px 25px;
+      background: #bb86fc;
+      color: #0f0f1a;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .hero a:hover {
+      background: #9b6dfc;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* --- Sunucu IP Bölümü --- */
+    .server-ip-section {
+      padding: 140px 0 80px 0;
+      background: #141426;
+      display: flex;
+      justify-content: center;
+    }
+
+    .server-ip-container {
+      position: relative;
+      background: #1a1a2e;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 35px rgba(187, 134, 252, 0.4);
+      width: 320px;
+      text-align: center;
+      overflow: visible;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+
+    .server-ip-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(187, 134, 252, 0.7);
+    }
+
+    #copy-ip-btn {
+      background: #bb86fc;
+      color: #0f0f1a;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 25px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 16px;
+      transition: background 0.3s ease;
+      margin-bottom: 15px;
+    }
+
+    #copy-ip-btn:hover {
+      background: #9b6dfc;
+    }
+
+    .ip-info {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    /* --- Alt bölüm: İletişim ve SSS --- */
+
+    .bottom-section {
+      display: flex;
+      justify-content: space-between;
+      padding: 80px 100px;
+      background: #0f0f1a;
+      color: white;
+      flex-wrap: wrap;
+      gap: 40px;
+      position: relative;
+    }
+
+    .contact-box, .faq-box {
+      position: relative;
+      background: #1a1a2e;
+      padding: 40px 30px 30px 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      flex: 1;
+      min-width: 300px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+
+    .contact-box:hover, .faq-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .contact-box h2, .faq-box h2 {
+      color: #bb86fc;
+      margin-bottom: 20px;
+    }
+
+    .faq-item {
+      margin-bottom: 20px;
+    }
+
+    .faq-question {
+      background-color: #292942;
+      color: #ffffff;
+      padding: 15px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      text-align: left;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background-color: #3d3d5c;
+    }
+
+    .faq-answer {
+      display: none;
+      margin-top: 10px;
+      padding-left: 15px;
+      color: #cccccc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(26, 26, 46, 0.6);
+      font-size: 14px;
+      color: #aaaaaa;
+      backdrop-filter: blur(5px);
+    }
+
+    @media screen and (max-width: 900px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 40px;
+      }
+
+      .hero {
+        padding-top: 100px;
+        padding-bottom: 60px;
+        flex-direction: column;
+        justify-content: flex-start;
+        text-align: left;
+      }
+
+      .bottom-section {
+        flex-direction: column;
+        padding: 40px;
+      }
+
+      .server-ip-container {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>SantanaNetwork</h1>
+    <nav>
+      <a href="#">Ana Sayfa</a>
+      <a href="#faq">Sıkça Sorulanlar</a>
+      <a href="#iletisim">İletişim</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Düşlerinin Sunucusuna<br>Hoş Geldin!</h2>
+      <p>SantanaNetwork, kaliteli sistemleri ve harika topluluğuyla Minecraft dünyasında fark yaratıyor.</p>
+      <a href="#faq">Göz At</a>
+    </div>
+  </section>
+
+  <!-- Sunucu IP Bölümü -->
+  <section class="server-ip-section" id="server-ip-section">
+    <div class="server-ip-container">
+      <h3 style="color:#bb86fc; font-weight:700; font-size: 20px;">Sunucu IP</h3>
+      <button id="copy-ip-btn">Kopyala</button>
+      <div class="ip-info">Sunucumuza hemen bağlanmak için IP adresini kopyalayın!</div>
+    </div>
+  </section>
+
+  <!-- Alt Bölüm: İletişim ve SSS -->
+  <section class="bottom-section">
+
+    <div class="contact-box" id="iletisim">
+      <h2>İletişim</h2>
+      <p><strong>Email:</strong> iletisim@santananetwork.com</p>
+      <p><strong>Telefon:</strong> +90 123 456 7890</p>
+      <p><strong>Adres:</strong> Türkiye, İstanbul</p>
+    </div>
+
+    <div class="faq-box" id="faq">
+      <h2>Sıkça Sorulan Sorular</h2>
+
+      <div class="faq-item">
+        <button class="faq-question">Sunucu ne zaman açılıyor?</button>
+        <div class="faq-answer">Sunucumuz yakın bir tarihte açılmaktadır.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Oyun modlarınız?</button>
+        <div class="faq-answer">Şuanlık sadece BoxMining oyun modumuz mevcuttur.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Sunucunun taban sürümü nedir</button>
+        <div class="faq-answer">Sunucunun sürümü, 1.16.5 üstü tüm sürümler kaliteyi tadabilir.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 SantanaNetwork. Tüm hakları saklıdır.
+  </footer>
+
+  <script>
+    // SSS açılır cevaplar
+    const questions = document.querySelectorAll('.faq-question');
+    questions.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling;
+        if(answer.style.display === 'block'){
+          answer.style.display = 'none';
+        } else {
+          // Önce tüm cevapları kapat
+          document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+          // Sonra tıklanan aç
+          answer.style.display = 'block';
+        }
+      });
+    });
+
+    // IP kopyalama butonu
+    const copyBtn = document.getElementById('copy-ip-btn');
+    copyBtn.addEventListener('click', () => {
+      const ipText = "play.santananetwork.com";  // Kopyalanacak IP metni burada gizli tutulur
+      navigator.clipboard.writeText(ipText).then(() => {
+        copyBtn.textContent = 'Kopyalandı!';
+        setTimeout(() => copyBtn.textContent = 'Kopyala', 2000);
+      });
+    });
+  </script>
+
+</body>
+</html>
